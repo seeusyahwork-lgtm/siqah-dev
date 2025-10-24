@@ -10,7 +10,7 @@ import CTASection from "../components/home/CTASection"
 
 const Home = () => {
   return (
-    <main className="w-full font-montserrat text-gray-800">
+    <main className="w-full  text-gray-800">
       <HeroSection />
       <AboutSection />
       <PaketSection />

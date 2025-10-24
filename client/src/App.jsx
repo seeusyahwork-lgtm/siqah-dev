@@ -10,6 +10,8 @@ import MainLayout from "./layouts/MainLayout";
 // pages
 import Home from "./pages/home";
 import About from "./pages/About";
+import Services from "./pages/Services";
+import Paket from "./pages/Paket"; 
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Services" element={<Services />} />
+          <Route path="/Paket" element={<Paket />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
