@@ -1,8 +1,15 @@
 // client/src/App.jsx
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+
+
+
+// layouts
 import MainLayout from "./layouts/MainLayout";
+
+// pages
+import Home from "./pages/home";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -10,6 +17,7 @@ function App() {
       <MainLayout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

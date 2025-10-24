@@ -4,9 +4,16 @@ import Footer from "../components/Footer";
 
 export default function MainLayout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="flex flex-col min-h-screen w-full bg-white overflow-x-hidden ">
+      {/* Navbar tetap di atas */}
       <Navbar />
-      <main className="flex-grow p-4">{children}</main>
+
+      {/* Main content */}
+      <main className="flex w-full mt-20">
+        {children}
+      </main>
+
+      {/* Footer */}
       <Footer />
     </div>
   );
