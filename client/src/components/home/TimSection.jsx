@@ -35,12 +35,20 @@ const teamMembers = [
 
 const TimSection = () => {
   return (
-    <section className="relative py-20 px-6 md:px-16 bg-gradient-to-b from-[#fefbf7] to-[#f9f6ef] overflow-hidden">
-      {/* Background Accent */}
-      <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')] bg-cover bg-center opacity-10"></div>
-
-      {/* Glow Light */}
-      <div className="absolute w-96 h-96 bg-[#B9914D]/20 rounded-full blur-3xl bottom-10 right-10"></div>
+    <section className="relative py-20 px-6 md:px-16 bg-gradient-to-b from-[#f9f6ef] to-[#fefbf7] overflow-hidden"
+      style={{
+        backgroundImage:
+          "url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed", // 🔥 Efek parallax
+      }}
+    
+    
+    >
+     {/* Overlay lembut agar teks tetap terbaca */}
+      <div className="absolute inset-0 bg-white/70"></div>
+      
 
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Header */}

@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 const CTASection = () => {
   return (
     <section
-      className="relative w-full bg-cover bg-center bg-no-repeat py-24 md:py-32 overflow-hidden"
+       className="relative py-24 px-6 md:px-16 text-center overflow-hidden bg-fixed bg-center bg-cover"
       style={{
         backgroundImage:
           "url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')",
       }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-emerald-900/60 md:bg-emerald-800/55 backdrop-blur-[2px]"></div>
+      {/* Overlay hijau lembut */}
+      <div className="absolute inset-0 bg-[#45624B]/75 mix-blend-multiply"></div>
 
       <div className="relative max-w-5xl mx-auto text-center px-6 md:px-10 z-10">
         {/* Animasi muncul dari bawah */}
@@ -54,8 +54,7 @@ const CTASection = () => {
         </motion.div>
       </div>
 
-      {/* Ornamen bawah */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-emerald-900/50 to-transparent pointer-events-none"></div>
+      
     </section>
   );
 };

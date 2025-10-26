@@ -1,3 +1,4 @@
+// client/src/components/services/HeroSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import { GiGoat, GiCookingPot, GiDeliveryDrone } from "react-icons/gi";

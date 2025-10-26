@@ -29,34 +29,40 @@ const PaketSection = () => {
 
   return (
     <section
-      className="relative w-full py-20 bg-cover bg-center"
+      className="relative w-full py-24 text-center overflow-hidden"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')",
+          'url("https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
       }}
     >
-      {/* Overlay gelap tipis untuk kontras card */}
-      <div className="absolute inset-0 bg-black/30"></div>
+      {/* Overlay gradasi lembut */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-[#45624B]/20 to-white/40" />
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        {/* Judul Section */}
         <motion.h2
-          className="text-3xl md:text-4xl font-cormorant font-bold text-center text-[#F8F8F5] mb-12"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-4xl md:text-5xl font-cormorant font-bold text-[#45624B] mb-12"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           Daftar Paket Aqiqah Siqah
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid Paket */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {paketList.map((paket, index) => (
             <motion.div
               key={paket.id}
-              className="bg-white bg-opacity-90 rounded-3xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
               viewport={{ once: true }}
+              className="bg-white rounded-3xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="relative w-full h-56">
                 <img

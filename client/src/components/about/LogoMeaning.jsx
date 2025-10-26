@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 const LogoMeaning = () => {
   return (
     <section
-      className="relative w-full bg-cover bg-center bg-no-repeat py-5 md:py-10 overflow-hidden"
+      className="relative py-20 px-6 md:px-16 bg-gradient-to-b from-[#fefbf7] to-[#f9f6ef] overflow-hidden"
       style={{
         backgroundImage:
           "url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed", // 🔥 efek parallax di sini
       }}
     >
       {/* Overlay */}

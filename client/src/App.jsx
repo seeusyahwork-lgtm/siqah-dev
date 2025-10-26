@@ -12,16 +12,18 @@ import Home from "./pages/home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Paket from "./pages/Paket"; 
+import Contact from "./pages/Contact";
 
 function App() {
   return (
     <BrowserRouter>
       <MainLayout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Services" element={<Services />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Tentang" element={<About />} />
+          <Route path="/Layanan" element={<Services />} />
           <Route path="/Paket" element={<Paket />} />
+          <Route path="/Kontak" element={<Contact />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

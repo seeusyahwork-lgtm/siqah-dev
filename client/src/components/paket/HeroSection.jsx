@@ -11,8 +11,8 @@ const HeroSection = () => {
           "url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')",
       }}
     >
-     {/* Overlay hijau gelap transparan — sama dengan CTASection */}
-      <div className="absolute inset-0 bg-[#45624B]/90" />
+      {/* Overlay khas Siqah: hijau gelap transparan */}
+      <div className="absolute inset-0 bg-[#45624B]/90"></div>
 
       <motion.div
         className="relative z-10 text-center max-w-3xl px-6"

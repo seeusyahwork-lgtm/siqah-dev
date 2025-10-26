@@ -35,7 +35,7 @@ const Navbar = () => {
           {menuItems.map((item, idx) => (
             <li key={idx} className="relative group">
               <a
-                href={`#${item.toLowerCase()}`}
+                href={`/${item.toLowerCase()}`}
                 className="hover:text-[#B9914D] transition-colors duration-300"
               >
                 {item}
