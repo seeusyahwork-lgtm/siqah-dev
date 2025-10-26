@@ -4,9 +4,16 @@ import { motion } from "framer-motion";
 
 const PaketPilihan = () => {
   return (
-    <section className="relative w-full py-24 bg-gradient-to-r from-[#45624B]/90 to-[#B9914D]/70">
-      {/* Overlay tipis untuk efek gelap */}
-      <div className="absolute inset-0 bg-black/40"></div>
+    <section 
+     className="relative py-24 px-6 md:px-16 text-center overflow-hidden bg-fixed bg-center bg-cover"
+      style={{
+        backgroundImage:
+          "url('https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg')",
+      }}
+    >
+
+    {/* Overlay hijau lembut */}
+      <div className="absolute inset-0 bg-[#45624B]/75 mix-blend-multiply"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <motion.h2
