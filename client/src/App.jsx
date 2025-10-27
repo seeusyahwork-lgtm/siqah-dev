@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 
 // pages
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Paket from "./pages/Paket"; 
