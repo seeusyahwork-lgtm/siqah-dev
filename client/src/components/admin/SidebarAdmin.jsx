@@ -1,35 +1,37 @@
-// client/src/components/superadmin/Sidebar.jsx
+// client/src/components/admin/SidebarAdmin.jsx
 import { NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   LayoutDashboard,
-  Users,
+  Package,
+  CreditCard,
   Database,
-  ClipboardList,
-  BarChart3,
+  Users,
+  Bell,
   Settings,
   Menu,
   X,
-  Bell,
+  BarChart3,
 } from "lucide-react";
 
 const menuItems = [
-  { name: "Dashboard", icon: LayoutDashboard, path: "/superadmin" },
-  { name: "Data Master", icon: Database, path: "/superadmin/data-master" },
-  { name: "Manajemen User", icon: Users, path: "/superadmin/users" },
-  { name: "Monitoring", icon: ClipboardList, path: "/superadmin/monitoring" },
-  { name: "Laporan", icon: BarChart3, path: "/superadmin/laporan" },
-  { name: "Pengaturan", icon: Settings, path: "/superadmin/pengaturan" },
-  { name: "Notifikasi & Log", icon: Bell, path: "/superadmin/notifikasi"  },
+  { name: "Dashboard", icon: LayoutDashboard, path: "/admin" },
+  { name: "Pesanan", icon: Package, path: "/admin/pesanan" },
+  { name: "Pembayaran", icon: CreditCard, path: "/admin/pembayaran" },
+  { name: "Data Master", icon: Database, path: "/admin/data-master" },
+  { name: "Manajemen User", icon: Users, path: "/admin/user" },
+  { name: "Laporan", icon: BarChart3, path: "/admin/laporan" },
+  { name: "Notifikasi", icon: Bell, path: "/admin/notifikasi" },
+  { name: "Pengaturan", icon: Settings, path: "/admin/pengaturan" },
 ];
 
-export default function Sidebar() {
+export default function SidebarAdmin() {
   const location = useLocation();
   const [open, setOpen] = useState(true);
 
   return (
     <>
-      {/* Overlay untuk mobile */}
+      {/* Overlay (mobile) */}
       <div
         onClick={() => setOpen(false)}
         className={`fixed inset-0 bg-black/40 z-30 lg:hidden transition-opacity ${
@@ -56,7 +58,7 @@ export default function Sidebar() {
           </button>
         </div>
 
-        {/* Menu */}
+        {/* Menu navigasi */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -80,13 +82,14 @@ export default function Sidebar() {
           })}
         </nav>
 
-        {/* Footer kecil di sidebar */}
+        {/* Footer */}
         <div className="p-4 border-t border-[#eee6da] text-xs text-[#7a7368] bg-white/60 text-center">
-          © {new Date().getFullYear()} <span className="font-semibold">Siqah Aqiqah</span>
+          © {new Date().getFullYear()}{" "}
+          <span className="font-semibold">Siqah Aqiqah</span>
         </div>
       </aside>
 
-      {/* Tombol buka sidebar di layar kecil */}
+      {/* Tombol buka sidebar (mobile) */}
       <button
         className="lg:hidden fixed top-4 left-4 z-50 bg-white/90 backdrop-blur-md p-2 rounded-md shadow-md border border-[#e7e1d8]"
         onClick={() => setOpen(true)}

@@ -4,6 +4,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Layouts
 import MainLayout from "./layouts/MainLayout";
 import SuperadminLayout from "./layouts/SuperadminLayout";
+import AdminLayout from "./layouts/AdminLayout";
+
+// admin Pages
+import DashboardAdmin from "./pages/admin/DashboardAdmin";
+import PesananAdmin from "./pages/admin/PesananAdmin";
+import DetailPesananAdmin from "./pages/admin/DetailPesananAdmin";
+import PembayaranAdmin from "./pages/admin/PembayaranAdmin";
+// import DataMasterAdmin from "./pages/admin/DataMasterAdmin";
+
 
 // Superadmin Pages
 import Dashboard from "./pages/superadmin/Dashboard";
@@ -12,6 +21,7 @@ import Dashboard from "./pages/superadmin/Dashboard";
  import Monitoring from "./pages/superadmin/Monitoring";
  import Laporan from "./pages/superadmin/Laporan";
  import Pengaturan from "./pages/superadmin/Pengaturan";
+ import Notifikasi from "./pages/superadmin/Notifikasi";
 
 // Public Pages
 import Home from "./pages/pengunjung/Home";
@@ -42,6 +52,16 @@ function App() {
           <Route path="monitoring" element={<Monitoring />} />
           <Route path="laporan" element={<Laporan />} />
           <Route path="pengaturan" element={<Pengaturan />} /> 
+          <Route path="notifikasi" element={<Notifikasi />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<DashboardAdmin />} />
+          <Route path="pesanan" element={<PesananAdmin />} />
+          <Route path="pesanan/:id" element={<DetailPesananAdmin />} />
+          <Route path="pembayaran" element={<PembayaranAdmin />} />
+          {/* <Route path="datamasteradmin" element={<DataMasterAdmin />} /> */}
+        
         </Route>
 
       </Routes>
