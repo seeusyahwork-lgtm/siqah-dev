@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiLogIn } from "react-icons/fi";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
-  const menuItems = ["Home", "Tentang", "Layanan", "Paket", "Kontak"];
+  const menuItems = [
+    { name: "Home", path: "/Home" },
+    { name: "Tentang", path: "/Tentang" },
+    { name: "Layanan", path: "/Layanan" },
+    { name: "Paket", path: "/Paket" },
+    { name: "Kontak", path: "/Kontak" },
+  ];
 
-  // Deteksi scroll untuk ubah background navbar
+  // Ubah background saat scroll
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) setScrolled(true);
-      else setScrolled(false);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -30,147 +35,99 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Kiri: Menu Desktop */}
+        {/* ========== KIRI: MENU DESKTOP ========== */}
         <ul className="hidden lg:flex flex-1 justify-start items-center gap-8 font-montserrat font-semibold text-[#45624B]">
-          {menuItems.map((item, idx) => (
-            <li key={idx} className="relative group">
-              <a
-                href={`/${item.toLowerCase()}`}
-                className="hover:text-[#B9914D] transition-colors duration-300"
-              >
-                {item}
-              </a>
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#B9914D] group-hover:w-full transition-all duration-300"></span>
-            </li>
-          ))}
+          {menuItems.map((item, idx) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <li key={idx} className="relative group">
+                <Link
+                  to={item.path}
+                  className={`transition-colors duration-300 ${
+                    isActive ? "text-[#B9914D]" : "hover:text-[#B9914D]"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+                <span
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#B9914D] transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
+              </li>
+            );
+          })}
         </ul>
 
-        {/* Tengah: Logo */}
+        {/* ========== TENGAH: LOGO ========== */}
         <div className="flex-none flex flex-col items-center justify-center mx-4 cursor-pointer group transition-transform duration-300 hover:scale-105">
-          <img
-            src="https://res.cloudinary.com/dcida9qys/image/upload/v1761098052/Siqah-logo-HD_fpetwm.png"
-            alt="Logo Siqah"
-            className="w-20 md:w-24"
-          />
+          <Link to="/Home">
+            <img
+              src="https://res.cloudinary.com/dcida9qys/image/upload/v1761098052/Siqah-logo-HD_fpetwm.png"
+              alt="Siqah Logo"
+              className="w-14 h-14 object-contain"
+            />
+          </Link>
         </div>
 
-        {/* Kanan: Login & Hamburger */}
-        <div className="flex-1 flex justify-end items-center gap-3">
-          {/* Tombol Login */}
-          <button
-            type="button"
-            className="flex items-center gap-2 bg-[#B9914D] hover:bg-[#a37f3e] text-white font-semibold font-montserrat px-5 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105"
-            onClick={() => document.getElementById("modal_login")?.showModal()}
-          >
-            <FiLogIn className="w-5 h-5" /> Masuk
+        {/* ========== KANAN: LOGIN & MENU MOBILE ========== */}
+        <div className="flex items-center gap-4">
+          <button className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-[#B9914D] text-white font-semibold hover:bg-[#A07E3F] transition-all duration-300">
+            <FiLogIn className="text-lg" /> Login
           </button>
 
-          {/* Hamburger Mobile */}
+          {/* Tombol toggle mobile */}
           <button
-            className="lg:hidden p-2 rounded-md text-[#B9914D] hover:bg-[#B9914D]/10 transition"
             onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden flex flex-col justify-center items-center space-y-1"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            <span
+              className={`block h-0.5 w-6 bg-[#45624B] transition-all duration-300 ${
+                mobileOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            ></span>
+            <span
+              className={`block h-0.5 w-6 bg-[#45624B] transition-all duration-300 ${
+                mobileOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`block h-0.5 w-6 bg-[#45624B] transition-all duration-300 ${
+                mobileOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            ></span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ========== MENU MOBILE ========== */}
       {mobileOpen && (
-        <motion.div
+        <motion.ul
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="lg:hidden mt-4 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-[#B9914D]/20 p-6 flex flex-col gap-3 text-[#45624B] font-semibold font-montserrat"
+          className="lg:hidden flex flex-col items-center gap-6 mt-4 pb-4 font-semibold text-[#45624B] bg-white/90 backdrop-blur-md rounded-xl shadow-md"
         >
-          {menuItems.map((item, idx) => (
-            <a
-              key={idx}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setMobileOpen(false)}
-              className="hover:text-[#B9914D] transition-all duration-200"
-            >
-              {item}
-            </a>
-          ))}
-        </motion.div>
+          {menuItems.map((item, idx) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <li key={idx}>
+                <Link
+                  to={item.path}
+                  onClick={() => setMobileOpen(false)}
+                  className={`text-lg ${
+                    isActive ? "text-[#B9914D]" : "hover:text-[#B9914D]"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
+          <button className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#B9914D] text-white font-semibold hover:bg-[#A07E3F] transition-all duration-300">
+            <FiLogIn className="text-lg" /> Login
+          </button>
+        </motion.ul>
       )}
-
-      {/* Modal Login */}
-      <dialog id="modal_login" className="modal">
-        <div className="modal-box rounded-2xl bg-gradient-to-b from-white to-[#fefbf7] shadow-2xl p-8">
-          <form method="dialog" className="flex justify-end">
-            <button className="btn btn-sm btn-circle btn-ghost">✕</button>
-          </form>
-
-          <h3 className="font-cormorant font-bold text-3xl text-center text-[#B9914D] mb-6">
-            Login ke Siqah
-          </h3>
-
-          <form className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-[#45624B] mb-1 font-montserrat">
-                Email
-              </label>
-              <input
-                type="email"
-                placeholder="Masukkan email"
-                className="input input-bordered w-full border-[#B9914D]/40 focus:border-[#B9914D] focus:ring-[#B9914D] font-montserrat"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[#45624B] mb-1 font-montserrat">
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="Masukkan password"
-                className="input input-bordered w-full border-[#B9914D]/40 focus:border-[#B9914D] focus:ring-[#B9914D] font-montserrat"
-                required
-              />
-            </div>
-
-            <button
-              type="button"
-              className="w-full bg-[#B9914D] hover:bg-[#a37f3e] text-white font-semibold font-montserrat px-5 py-3 rounded-full shadow-md transition-transform duration-200 hover:scale-105"
-            >
-              <FiLogIn className="inline-block mr-2" />
-              Masuk
-            </button>
-          </form>
-
-          <p className="text-center text-sm mt-5 text-[#45624B]/80 font-montserrat">
-            Belum punya akun?{" "}
-            <a href="#" className="text-[#B9914D] hover:underline">
-              Daftar Sekarang
-            </a>
-          </p>
-        </div>
-      </dialog>
     </motion.nav>
   );
 };

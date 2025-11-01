@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   const [visible, setVisible] = useState(false);
@@ -10,9 +11,7 @@ export function Footer() {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight;
       const footer = document.getElementById("footer");
-      if (footer && scrollPos > footer.offsetTop + 100) {
-        setVisible(true);
-      }
+      if (footer && scrollPos > footer.offsetTop + 100) setVisible(true);
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll();
@@ -26,7 +25,7 @@ export function Footer() {
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
-      {/* Background */}
+      {/* Background dekoratif */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#45624B] to-[#2f4233] z-0"></div>
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#B9914D]/20 rounded-full blur-3xl z-0"></div>
 
@@ -37,7 +36,7 @@ export function Footer() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        {/* Kolom kiri: Logo & Brand */}
+        {/* Kolom 1: Brand */}
         <div className="flex flex-col items-center md:items-start">
           <div className="mb-4">
             <img
@@ -49,70 +48,78 @@ export function Footer() {
           <h3 className="font-cormorant text-2xl text-[#B9914D] font-bold mb-2">
             Siap Aqiqah
           </h3>
-          <p className="text-sm text-gray-200/80 max-w-xs leading-relaxed">
-            Transparansi, Amanah, dan Keberkahan dalam setiap ibadah aqiqah &
-            qurban Anda.
+          <p className="text-sm text-gray-200/80 max-w-xs leading-relaxed text-center md:text-left">
+            Kami berkomitmen memberikan layanan aqiqah terbaik dengan penuh amanah dan profesional.
           </p>
         </div>
 
-        {/* Kolom tengah: Navigasi */}
-        <div className="flex flex-col items-center justify-center gap-2 md:gap-3">
-          <h4 className="text-[#B9914D] font-cormorant text-xl font-semibold mb-3">
-            Navigasi
-          </h4>
-          {["Home", "Tentang", "Layanan", "Paket", "Kontak"].map((item, idx) => (
-            <a
-              key={idx}
-              href={`#${item.toLowerCase()}`}
-              className="text-gray-200/90 hover:text-[#B9914D] transition-all duration-300"
-            >
-              {item}
-            </a>
-          ))}
+        {/* Kolom 2: Navigasi */}
+        <div className="flex flex-col items-center md:items-start">
+          <h4 className="text-lg font-semibold mb-4 text-[#B9914D]">Navigasi</h4>
+          <ul className="space-y-3 text-gray-200/90">
+            <li>
+              <Link to="/Home" className="hover:text-[#B9914D] transition-colors duration-300">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/Tentang" className="hover:text-[#B9914D] transition-colors duration-300">
+                Tentang Kami
+              </Link>
+            </li>
+            <li>
+              <Link to="/Layanan" className="hover:text-[#B9914D] transition-colors duration-300">
+                Layanan
+              </Link>
+            </li>
+            <li>
+              <Link to="/Paket" className="hover:text-[#B9914D] transition-colors duration-300">
+                Paket
+              </Link>
+            </li>
+            <li>
+              <Link to="/Kontak" className="hover:text-[#B9914D] transition-colors duration-300">
+                Kontak
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        {/* Kolom kanan: Kontak & Sosial */}
-        <div className="flex flex-col items-center md:items-end text-center md:text-right gap-3">
-          <h4 className="text-[#B9914D] font-cormorant text-xl font-semibold mb-2">
-            Hubungi Kami
-          </h4>
-          <p className="text-sm">📞 +62 812-3456-789</p>
-          <p className="text-sm">✉ info@siqah.com</p>
-
-          {/* Ikon Sosial */}
-          <div className="flex justify-center md:justify-end gap-4 mt-3 text-2xl">
-            <a
-              href="https://instagram.com/siqah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#B9914D] transition-transform duration-300 hover:scale-110"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://wa.me/628123456789"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#B9914D] transition-transform duration-300 hover:scale-110"
-              aria-label="WhatsApp"
-            >
-              <FaWhatsapp />
-            </a>
-            <a
-              href="mailto:info@siqah.com"
-              className="hover:text-[#B9914D] transition-transform duration-300 hover:scale-110"
-              aria-label="Email"
-            >
-              <FaEnvelope />
-            </a>
-          </div>
+        {/* Kolom 3: Kontak Sosial */}
+        <div className="flex flex-col items-center md:items-start">
+          <h4 className="text-lg font-semibold mb-4 text-[#B9914D]">Hubungi Kami</h4>
+          <ul className="space-y-3">
+            <li className="flex items-center gap-3 hover:text-[#B9914D] transition-all duration-300">
+              <FaWhatsapp className="text-xl" />
+              <a
+                href="https://wa.me/6281234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                0812-3456-7890
+              </a>
+            </li>
+            <li className="flex items-center gap-3 hover:text-[#B9914D] transition-all duration-300">
+              <FaEnvelope className="text-xl" />
+              <a href="mailto:info@siqah.id">info@siqah.id</a>
+            </li>
+            <li className="flex items-center gap-3 hover:text-[#B9914D] transition-all duration-300">
+              <FaInstagram className="text-xl" />
+              <a
+                href="https://instagram.com/siqah.id"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @siqah.id
+              </a>
+            </li>
+          </ul>
         </div>
       </motion.div>
 
-      {/* Garis pemisah & credit */}
-      <div className="relative z-10 mt-12 border-t border-white/20 pt-4 text-center text-sm text-gray-200/70">
-        © {new Date().getFullYear()} <span className="text-[#B9914D] font-semibold">Siqah</span> — Aqiqah & Qurban Modern 🌙
+      {/* Garis bawah & hak cipta */}
+      <div className="relative z-10 mt-12 text-center border-t border-white/20 pt-6 text-sm text-gray-300">
+        © {new Date().getFullYear()} Siap Aqiqah. All rights reserved.
       </div>
     </footer>
   );
