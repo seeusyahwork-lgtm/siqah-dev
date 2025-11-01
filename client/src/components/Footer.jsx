@@ -58,7 +58,7 @@ export function Footer() {
           <h4 className="text-lg font-semibold mb-4 text-[#B9914D]">Navigasi</h4>
           <ul className="space-y-3 text-gray-200/90">
             <li>
-              <Link to="/Home" className="hover:text-[#B9914D] transition-colors duration-300">
+              <Link to="/" className="hover:text-[#B9914D] transition-colors duration-300">
                 Home
               </Link>
             </li>

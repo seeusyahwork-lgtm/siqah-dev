@@ -27,11 +27,11 @@ function App() {
 
         {/* 🔹 ROUTE UNTUK PENGUNJUNG (LAYOUT UMUM) */}
         <Route element={<MainLayout />}>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Tentang" element={<About />} />
-          <Route path="/Layanan" element={<Services />} />
-          <Route path="/Paket" element={<Paket />} />
-          <Route path="/Kontak" element={<Contact />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/tentang" element={<About />} />
+          <Route path="/layanan" element={<Services />} />
+          <Route path="/paket" element={<Paket />} />
+          <Route path="/kontak" element={<Contact />} />
         </Route>
 
         {/* 🔹 ROUTE UNTUK SUPERADMIN (LAYOUT KHUSUS) */}

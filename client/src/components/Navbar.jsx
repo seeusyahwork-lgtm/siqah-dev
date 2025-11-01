@@ -9,12 +9,12 @@ const Navbar = () => {
   const location = useLocation();
 
   const menuItems = [
-    { name: "Home", path: "/Home" },
-    { name: "Tentang", path: "/Tentang" },
-    { name: "Layanan", path: "/Layanan" },
-    { name: "Paket", path: "/Paket" },
-    { name: "Kontak", path: "/Kontak" },
-  ];
+  { name: "Home", path: "/" },
+  { name: "Tentang", path: "/tentang" },
+  { name: "Layanan", path: "/layanan" },
+  { name: "Paket", path: "/paket" },
+  { name: "Kontak", path: "/kontak" },
+];
 
   // Ubah background saat scroll
   useEffect(() => {
