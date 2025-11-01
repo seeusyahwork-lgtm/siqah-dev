@@ -1,8 +1,8 @@
 // src/pages/Contact.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import ContactInfo from "../components/contact/ContactInfo";
-import ContactForm from "../components/contact/ContactForm";
+import ContactInfo from "../../components/pengunjung/contact/ContactInfo";
+import ContactForm from "../../components/pengunjung/contact/ContactForm";
 
 const adminData = {
   nama: "Admin Utama Siqah",

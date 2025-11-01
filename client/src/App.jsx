@@ -14,11 +14,11 @@ import Dashboard from "./pages/superadmin/Dashboard";
  import Pengaturan from "./pages/superadmin/Pengaturan";
 
 // Public Pages
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Paket from "./pages/Paket";
-import Contact from "./pages/Contact";
+import Home from "./pages/pengunjung/Home";
+import About from "./pages/pengunjung/About";
+import Services from "./pages/pengunjung/Services";
+import Paket from "./pages/pengunjung/Paket";
+import Contact from "./pages/pengunjung/Contact";
 
 function App() {
   return (
