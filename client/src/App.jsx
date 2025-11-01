@@ -7,11 +7,11 @@ import SuperadminLayout from "./layouts/SuperadminLayout";
 
 // Superadmin Pages
 import Dashboard from "./pages/superadmin/Dashboard";
-// import DataMaster from "@/pages/superadmin/DataMaster";
-// import Users from "@/pages/superadmin/Users";
-// import Monitoring from "@/pages/superadmin/Monitoring";
-// import Laporan from "@/pages/superadmin/Laporan";
-// import Pengaturan from "@/pages/superadmin/Pengaturan";
+ import DataMaster from "./pages/superadmin/DataMaster";
+ import Users from "./pages/superadmin/Users";
+ import Monitoring from "./pages/superadmin/Monitoring";
+ import Laporan from "./pages/superadmin/Laporan";
+ import Pengaturan from "./pages/superadmin/Pengaturan";
 
 // Public Pages
 import Home from "./pages/Home";
@@ -37,11 +37,11 @@ function App() {
         {/* 🔹 ROUTE UNTUK SUPERADMIN (LAYOUT KHUSUS) */}
         <Route path="/superadmin" element={<SuperadminLayout />}>
           <Route index element={<Dashboard />} />
-          {/* <Route path="data-master" element={<DataMaster />} />
+          <Route path="data-master" element={<DataMaster />} />
           <Route path="users" element={<Users />} />
           <Route path="monitoring" element={<Monitoring />} />
           <Route path="laporan" element={<Laporan />} />
-          <Route path="pengaturan" element={<Pengaturan />} /> */}
+          <Route path="pengaturan" element={<Pengaturan />} /> 
         </Route>
 
       </Routes>
