@@ -1,36 +1,80 @@
-import { Bell, User } from "lucide-react";
+// client/src/components/superadmin/Topbar.jsx
+import { Bell, LogOut } from "lucide-react";
+import { useState } from "react";
+import NotificationDropdown from "./NotificationDropdown";
 
-const Topbar = ({ superadminName = "Superadmin" }) => {
+export default function Topbar() {
+  const [openNotif, setOpenNotif] = useState(false);
+
+  // Data superadmin dummy (nantinya dihubungkan ke tb_user)
+  const superadmin = {
+    name: "Superadmin Siqah",
+    email: "superadmin@siqah.id",
+    avatar:
+      "https://ui-avatars.com/api/?name=Superadmin+Siqah&background=e2b97f&color=fff",
+  };
+
   return (
-    <header className="bg-white shadow-md flex justify-between items-center px-6 py-3 border-b border-emerald-100">
-      {/* Title / Breadcrumb */}
-      <h2 className="text-xl font-semibold text-emerald-700 tracking-wide">
-        Dashboard Superadmin
-      </h2>
+    <header
+      className="flex items-center justify-between px-6 py-3 
+      bg-white/80 backdrop-blur-md border-b border-[#e7e1d8] shadow-sm"
+    >
+      {/* Kiri - Judul Halaman */}
+      <div>
+        <h2 className="text-lg font-semibold text-[#3b3b3b] tracking-wide">
+          Panel <span className="text-[#e2b97f]">Superadmin</span>
+        </h2>
+      </div>
 
-      {/* Actions */}
+      {/* Kanan - Notifikasi, Profil, Logout */}
       <div className="flex items-center gap-5">
-        {/* Notifikasi */}
-        <button className="relative text-emerald-700 hover:text-emerald-900 transition">
-          <Bell size={22} />
-          <span className="absolute -top-1 -right-1 bg-yellow-400 text-white text-xs px-1 rounded-full">
-            3
-          </span>
-        </button>
+        {/* 🔔 Notifikasi */}
+        <div className="relative">
+          <button
+            onClick={() => setOpenNotif((prev) => !prev)}
+            className="relative p-2 rounded-full hover:bg-[#f9f6ef] transition-all"
+          >
+            <Bell
+              size={20}
+              className="text-[#3b3b3b] hover:text-[#e2b97f] transition"
+            />
+            {/* Badge */}
+            <span
+              className="absolute -top-0.5 -right-0.5 bg-[#e2b97f] text-white
+              text-[10px] font-semibold rounded-full px-1.5 shadow-sm"
+            >
+              3
+            </span>
+          </button>
+          {openNotif && (
+            <NotificationDropdown onClose={() => setOpenNotif(false)} />
+          )}
+        </div>
 
-        {/* Profile */}
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full bg-emerald-200 flex items-center justify-center">
-            <User className="text-emerald-700" size={20} />
-          </div>
-          <div className="text-sm">
-            <p className="font-medium text-emerald-800">{superadminName}</p>
-            <p className="text-emerald-500 text-xs">Superadmin</p>
+        {/* 👤 Profil */}
+        <div className="flex items-center gap-3 bg-white/60 rounded-full px-3 py-1 border border-[#eee6da] shadow-sm">
+          <img
+            src={superadmin.avatar}
+            alt="avatar"
+            className="w-9 h-9 rounded-full border border-[#e7e1d8] object-cover"
+          />
+          <div className="hidden sm:block">
+            <p className="text-sm font-medium text-[#3b3b3b]">
+              {superadmin.name}
+            </p>
+            <p className="text-xs text-[#7a7368]">{superadmin.email}</p>
           </div>
         </div>
+
+        {/* 🚪 Logout */}
+        <button
+          className="flex items-center gap-1 text-[#3b3b3b] hover:text-[#e2b97f] transition-all"
+          onClick={() => console.log('Logout clicked')}
+        >
+          <LogOut size={18} />
+          <span className="hidden sm:inline text-sm font-medium">Logout</span>
+        </button>
       </div>
     </header>
   );
-};
-
-export default Topbar;
+}

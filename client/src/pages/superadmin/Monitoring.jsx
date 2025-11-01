@@ -6,7 +6,7 @@ import { Eye, CheckCircle2, Clock, XCircle } from "lucide-react";
 export default function Monitoring() {
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-  // Data dummy (nantinya diambil dari tb_pesanan dan tb_progress_pesanan)
+  // 📋 Data dummy (nantinya dari tb_pesanan + tb_progress_pesanan)
   const orders = [
     {
       id: 1,
@@ -65,7 +65,7 @@ export default function Monitoring() {
       render: (row) => (
         <button
           onClick={() => setSelectedOrder(row)}
-          className="flex items-center gap-1 text-blue-600 hover:bg-blue-50 px-2 py-1 rounded-md transition"
+          className="flex items-center gap-1 text-[#45624B] hover:bg-[#E3EBD2]/60 px-3 py-1.5 rounded-md transition"
         >
           <Eye size={16} />
           Lihat
@@ -76,22 +76,26 @@ export default function Monitoring() {
 
   return (
     <div className="space-y-6">
-      <Card>
+      <Card className="border border-[#e7e1d8] bg-white/90 backdrop-blur-md rounded-2xl shadow-md">
         <CardHeader
-          title="Monitoring Proses Aqiqah"
+          title={<span className="text-[#45624B] font-semibold text-lg">Monitoring Proses Aqiqah</span>}
           subtitle="Pantau setiap tahap penyembelihan, pengolahan, dan pengantaran"
         />
         <CardContent>
-          <Table columns={columns} data={orders} />
+          <div className="overflow-x-auto rounded-xl border border-[#E7E1D8]">
+            <Table columns={columns} data={orders} />
+          </div>
         </CardContent>
       </Card>
 
+      {/* Detail Proses */}
       {selectedOrder && (
-        <div className="bg-white border rounded-2xl shadow-sm p-5">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">
+        <div className="border border-[#E7E1D8] bg-white/90 backdrop-blur-md rounded-2xl shadow-md p-6">
+          <h2 className="text-lg font-semibold text-[#45624B] mb-4">
             Detail Proses — {selectedOrder.konsumen}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             <StageCard
               title="Penyembelihan"
               status={selectedOrder.kandang}
@@ -108,10 +112,11 @@ export default function Monitoring() {
               detail="Petugas kurir sedang mengantarkan pesanan."
             />
           </div>
+
           <div className="flex justify-end mt-6">
             <button
               onClick={() => setSelectedOrder(null)}
-              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg"
+              className="bg-gradient-to-r from-[#45624B] to-[#B9914D] text-white px-5 py-2 rounded-lg shadow hover:opacity-90 transition"
             >
               Tutup
             </button>
@@ -125,16 +130,13 @@ export default function Monitoring() {
 // -------------------- Komponen Pendukung --------------------
 
 function StatusBadge({ status }) {
-  let color =
-    status === "Selesai"
-      ? "bg-green-100 text-green-700"
-      : status === "Proses"
-      ? "bg-yellow-100 text-yellow-700"
-      : status === "Menunggu"
-      ? "bg-gray-100 text-gray-700"
-      : status === "Terkirim"
-      ? "bg-blue-100 text-blue-700"
-      : "bg-red-100 text-red-700";
+  const colors = {
+    Selesai: "bg-green-50 text-green-700 border border-green-200",
+    Proses: "bg-amber-50 text-amber-700 border border-amber-200",
+    Menunggu: "bg-gray-50 text-gray-700 border border-gray-200",
+    Terkirim: "bg-blue-50 text-blue-700 border border-blue-200",
+    Gagal: "bg-red-50 text-red-700 border border-red-200",
+  };
 
   const icon =
     status === "Selesai" ? (
@@ -149,7 +151,7 @@ function StatusBadge({ status }) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${color}`}
+      className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium ${colors[status] || colors.Menunggu}`}
     >
       {icon}
       {status}
@@ -159,17 +161,15 @@ function StatusBadge({ status }) {
 
 function StageCard({ title, status, detail }) {
   return (
-    <div className="border rounded-xl p-4 shadow-sm hover:shadow-md transition">
+    <div className="border border-[#E7E1D8] bg-white/90 rounded-xl p-4 shadow-sm hover:shadow-md transition">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="font-semibold text-gray-700">{title}</h3>
+        <h3 className="font-semibold text-[#45624B]">{title}</h3>
         <StatusBadge status={status} />
       </div>
-      <p className="text-sm text-gray-500">{detail}</p>
-      <div className="mt-3">
-        <button className="text-sm text-blue-600 hover:underline">
-          Lihat Bukti
-        </button>
-      </div>
+      <p className="text-sm text-gray-500 mb-3">{detail}</p>
+      <button className="text-sm text-[#45624B] hover:text-[#B9914D] font-medium transition">
+        Lihat Bukti
+      </button>
     </div>
   );
 }
