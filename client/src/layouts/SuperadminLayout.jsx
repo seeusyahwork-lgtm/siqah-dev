@@ -1,3 +1,4 @@
+// client/src/layouts/SuperadminLayout.jsx
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/superadmin/Sidebar";
 import Topbar from "../components/superadmin/Topbar";

@@ -1,3 +1,4 @@
+// client/src/components/superadmin/Footer.jsx
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200 py-3 px-6 text-sm text-gray-600 flex justify-between items-center mt-auto">
