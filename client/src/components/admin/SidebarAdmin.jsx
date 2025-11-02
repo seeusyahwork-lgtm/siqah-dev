@@ -11,15 +11,49 @@ import {
   Settings,
   Menu,
   X,
+  ChevronDown,
+  ChevronRight,
   BarChart3,
 } from "lucide-react";
 
 const menuItems = [
   { name: "Dashboard", icon: LayoutDashboard, path: "/admin" },
   { name: "Pesanan", icon: Package, path: "/admin/pesanan" },
-  { name: "Pembayaran", icon: CreditCard, path: "/admin/pembayaran" },
-  { name: "Data Master", icon: Database, path: "/admin/data-master" },
-  { name: "Manajemen User", icon: Users, path: "/admin/user" },
+  {
+    name: "Data Master",
+    icon: Database,
+    children: [
+      { name: "Dashboard Data", path: "/admin/data" },
+      { name: "Data Kandang", path: "/admin/data-master/kandang" },
+      { name: "Data Hewan", path: "/admin/data-master/hewan" },
+      { name: "Data Dapur", path: "/admin/data-master/dapur" },
+      { name: "Data Paket", path: "/admin/data-master/paket" },
+      { name: "Data Menu", path: "/admin/data-master/menu" },
+    ],
+  },
+  {
+    name: "Pembayaran",
+    icon: CreditCard,
+    children: [
+      { name: "Dashboard Pembayaran", path: "/admin/pembayaran" },
+      { name: "Data Pengajuan", path: "/admin/pembayaran/pengajuan" },
+      { name: "Data Validasi Pengajuan", path: "/admin/pembayaran/validasi" },
+      { name: "Data Invoice", path: "/admin/pembayaran/invoice" },
+      { name: "Data Pembayaran", path: "/admin/pembayaran/data" },
+      { name: "Data Pelunasan", path: "/admin/pembayaran/pelunasan" },
+    ],
+  },
+  {
+    name: "Manajemen User",
+    icon: Users,
+    children: [
+      { name: "Dashboard User", path: "/admin/datauser" },
+      { name: "Data Petugas Kandang", path: "/admin/data-master/petugas/kandang" },
+      { name: "Data Petugas Dapur", path: "/admin/data-master/petugas/dapur" },
+      { name: "Data Kurir", path: "/admin/data-master/petugas/kurir" },
+      { name: "Data konsumen", path: "/admin/data-master/konsumen" },
+    ],
+  },
   { name: "Laporan", icon: BarChart3, path: "/admin/laporan" },
   { name: "Notifikasi", icon: Bell, path: "/admin/notifikasi" },
   { name: "Pengaturan", icon: Settings, path: "/admin/pengaturan" },
@@ -28,6 +62,11 @@ const menuItems = [
 export default function SidebarAdmin() {
   const location = useLocation();
   const [open, setOpen] = useState(true);
+  const [expanded, setExpanded] = useState({});
+
+  const toggleExpand = (name) => {
+    setExpanded((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
 
   return (
     <>
@@ -59,10 +98,59 @@ export default function SidebarAdmin() {
         </div>
 
         {/* Menu navigasi */}
-        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
+
+            if (item.children) {
+              const isExpanded = expanded[item.name];
+              return (
+                <div key={item.name}>
+                  <button
+                    onClick={() => toggleExpand(item.name)}
+                    className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                      isExpanded
+                        ? "bg-[#e2b97f]/90 text-white shadow-sm"
+                        : "text-[#3b3b3b] hover:bg-[#f9f6ef] hover:text-[#e2b97f]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon size={18} />
+                      {item.name}
+                    </div>
+                    {isExpanded ? (
+                      <ChevronDown size={16} />
+                    ) : (
+                      <ChevronRight size={16} />
+                    )}
+                  </button>
+
+                  <div
+                    className={`ml-8 mt-1 space-y-1 overflow-hidden transition-all duration-300 ${
+                      isExpanded ? "max-h-96" : "max-h-0"
+                    }`}
+                  >
+                    {item.children.map((child) => {
+                      const activeChild = location.pathname === child.path;
+                      return (
+                        <NavLink
+                          key={child.name}
+                          to={child.path}
+                          className={`block px-3 py-1.5 rounded-md text-sm transition ${
+                            activeChild
+                              ? "bg-[#e2b97f]/80 text-white"
+                              : "text-[#4a463d] hover:bg-[#f9f6ef] hover:text-[#e2b97f]"
+                          }`}
+                        >
+                          {child.name}
+                        </NavLink>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            }
 
             return (
               <NavLink
