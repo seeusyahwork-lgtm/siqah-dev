@@ -1,3 +1,4 @@
+// client/src/components/ui/Tabs.jsx
 import { useState } from "react";
 
 export function Tabs({ value, onValueChange, children }) {

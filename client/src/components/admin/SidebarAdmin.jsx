@@ -37,10 +37,8 @@ const menuItems = [
     children: [
       { name: "Dashboard Pembayaran", path: "/admin/dashboardpembayaran" },
       { name: "Data Pengajuan", path: "/admin/pembayaran/pengajuan" },
-      { name: "Data Validasi Pengajuan", path: "/admin/pembayaran/validasi" },
       { name: "Data Invoice", path: "/admin/pembayaran/invoice" },
       { name: "Data Pembayaran", path: "/admin/pembayaran/data" },
-      { name: "Data Pelunasan", path: "/admin/pembayaran/pelunasan" },
     ],
   },
   {

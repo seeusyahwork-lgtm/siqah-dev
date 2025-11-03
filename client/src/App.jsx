@@ -30,7 +30,9 @@ import DataKonsumen from "./pages/data-master/konsumen/DataKonsumen";
 
 //Data Master Pembayaran
 import DataPembayaranDashboard from "./pages/data-master/DashboardPembayaran";
-
+import DataPengajuan from "./pages/data-master/pembayaran/DataPengajuan";
+import DataInvoice from "./pages/data-master/pembayaran/DataInvoice";
+import DataPembayaran from "./pages/data-master/pembayaran/DataPembayaran";
 
 
 // Superadmin Pages
@@ -97,11 +99,11 @@ function App() {
 
 
           <Route path="dashboardpembayaran" element={<DataPembayaranDashboard />} />
-          {/* <Route path="pembayaran/pengajuan" element={<Pengajuan />} />
-          <Route path="pembayaran/validasi" element={<Validasi />} />
-          <Route path="pembayaran/invoice" element={<Invoice />} />
+          <Route path="pembayaran/pengajuan" element={<DataPengajuan />} />
+          <Route path="pembayaran/invoice" element={<DataInvoice />} />
           <Route path="pembayaran/data" element={<DataPembayaran />} />
-          <Route path="pembayaran/pelunasan" element={<Pelunasan />} /> */}
+
+
 
 
         

@@ -1,3 +1,4 @@
+// src/components/ui/Table.jsx
 export default function Table({ columns = [], data = [] }) {
   return (
     <div className="overflow-x-auto bg-white border border-gray-200 rounded-2xl shadow-sm">
