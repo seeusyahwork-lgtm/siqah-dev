@@ -13,20 +13,24 @@ import DetailPesananAdmin from "./pages/admin/DetailPesananAdmin";
 import PembayaranAdmin from "./pages/admin/PembayaranAdmin";
 // import DataMasterAdmin from "./pages/admin/DataMasterAdmin";
 
-//Data Master
+//Data Master entitas
 import Data from "./pages/data-master/DashboardData"; //import
 import DataHewan from "./pages/data-master/kandang/DataHewan";
 import DataKandang from "./pages/data-master/kandang/DataKandang";
-
 import DataDapur from "./pages/data-master/dapur/DataDapur";
 import DataMenu from "./pages/data-master/dapur/DataMenu";
 import DataPaket from "./pages/data-master/dapur/DataPaket";
 
+//Data Master User
+import DataUser from "./pages/data-master/DashboardUser"; 
 import DataPetugasKandang from "./pages/data-master/petugas/kandang/DataPetugasKandang";
 import DataPetugasDapur from "./pages/data-master/petugas/dapur/DataPetugasDapur";
 import DataPetugasKurir from "./pages/data-master/petugas/kurir/DataPetugasKurir";
 import DataKonsumen from "./pages/data-master/konsumen/DataKonsumen";
-import DataUser from "./pages/data-master/DashboardUser"; 
+
+//Data Master Pembayaran
+import DataPembayaranDashboard from "./pages/data-master/DashboardPembayaran";
+
 
 
 // Superadmin Pages
@@ -80,7 +84,6 @@ function App() {
           <Route path="data" element={<Data />} />
           <Route path="data-master/hewan" element={<DataHewan />} />
           <Route path="data-master/kandang" element={<DataKandang />} />
-
           <Route path="data-master/dapur" element={<DataDapur />} />
           <Route path="data-master/menu" element={<DataMenu />} />
           <Route path="data-master/paket" element={<DataPaket />} />
@@ -91,6 +94,14 @@ function App() {
           <Route path="data-master/petugas/dapur" element={<DataPetugasDapur />} />
           <Route path="data-master/petugas/kurir" element={<DataPetugasKurir />} />
           <Route path="data-master/konsumen" element={<DataKonsumen />} />
+
+
+          <Route path="dashboardpembayaran" element={<DataPembayaranDashboard />} />
+          {/* <Route path="pembayaran/pengajuan" element={<Pengajuan />} />
+          <Route path="pembayaran/validasi" element={<Validasi />} />
+          <Route path="pembayaran/invoice" element={<Invoice />} />
+          <Route path="pembayaran/data" element={<DataPembayaran />} />
+          <Route path="pembayaran/pelunasan" element={<Pelunasan />} /> */}
 
 
         

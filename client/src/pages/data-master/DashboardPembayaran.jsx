@@ -1,11 +1,12 @@
-// client/src/pages/data-master/DashboardUser.jsx
+// client/src/pages/pembayaran/DashboardPembayaran.jsx
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "../../components/ui/Card";
 import {
-  Users,
-  Truck,
-  Warehouse,
-  UtensilsCrossed,
+  CreditCard,
+  CheckCircle,
+  FileText,
+  DollarSign,
+  BadgeCheck,
 } from "lucide-react";
 import {
   PieChart,
@@ -16,86 +17,92 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function DashboardUser() {
-  // --- Data State ---
+export default function DashboardPembayaran() {
   const [data, setData] = useState({
-    konsumen: 0,
-    kurir: 0,
-    kandang: 0,
-    dapur: 0,
+    pengajuan: 0,
+    validasi: 0,
+    invoice: 0,
+    dibayar: 0,
+    lunas: 0,
   });
 
-  // --- Dummy data untuk chart & aktivitas (nanti diganti API real) ---
   const [chartData, setChartData] = useState([]);
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    // Simulasi fetch data dari API
+    // --- Dummy data sementara (nanti diganti API real) ---
     setData({
-      konsumen: 152,
-      kurir: 5,
-      kandang: 7,
-      dapur: 4,
+      pengajuan: 45,
+      validasi: 37,
+      invoice: 52,
+      dibayar: 30,
+      lunas: 25,
     });
 
     setChartData([
-      { name: "Konsumen", value: 152 },
-      { name: "Petugas Kurir", value: 5 },
-      { name: "Petugas Kandang", value: 7 },
-      { name: "Petugas Dapur", value: 4 },
+      { name: "Pengajuan", value: 45 },
+      { name: "Tervalidasi", value: 37 },
+      { name: "Invoice", value: 52 },
+      { name: "Dibayar", value: 30 },
+      { name: "Lunas", value: 25 },
     ]);
 
     setActivities([
       {
         tanggal: "02 Nov 2025",
         user: "Konsumen - Ahmad Fauzi",
-        aktivitas: "Melakukan pemesanan Paket Aqiqah Premium.",
+        aktivitas: "Mengajukan pembayaran untuk INV-023.",
       },
       {
         tanggal: "01 Nov 2025",
-        user: "Petugas Kurir - Rudi Hartono",
-        aktivitas: "Mengantarkan pesanan ke daerah Antapani.",
+        user: "Admin - Nurul Aini",
+        aktivitas: "Memvalidasi pembayaran INV-018.",
       },
       {
         tanggal: "31 Okt 2025",
-        user: "Petugas Dapur - Siti Nurhaliza",
-        aktivitas: "Memasak pesanan untuk 15 paket Aqiqah.",
+        user: "Konsumen - Dedi Pratama",
+        aktivitas: "Melakukan pembayaran sebesar Rp1.500.000.",
       },
       {
-        tanggal: "29 Okt 2025",
-        user: "Petugas Kandang - Samsul Anwar",
-        aktivitas: "Menambahkan hewan baru di KDG-003.",
+        tanggal: "30 Okt 2025",
+        user: "Admin - Rina Dewi",
+        aktivitas: "Menandai INV-015 sebagai LUNAS.",
       },
     ]);
   }, []);
 
-  const COLORS = ["#e2b97f", "#caa268", "#f6e7c2", "#f2deb3"];
+  const COLORS = ["#e2b97f", "#f2deb3", "#f6e7c2", "#caa268", "#e8d7b8"];
 
-  // --- Card Statistik ---
   const cards = [
     {
-      title: "Total Konsumen",
-      value: data.konsumen,
-      icon: Users,
+      title: "Jumlah Pengajuan",
+      value: data.pengajuan,
+      icon: CreditCard,
       color: "from-[#fff7e8] to-[#fbeed7]",
     },
     {
-      title: "Total Petugas Kurir",
-      value: data.kurir,
-      icon: Truck,
+      title: "Telah Divalidasi",
+      value: data.validasi,
+      icon: CheckCircle,
       color: "from-[#eafaf3] to-[#dcf7ec]",
     },
     {
-      title: "Total Petugas Kandang",
-      value: data.kandang,
-      icon: Warehouse,
+      title: "Jumlah Invoice",
+      value: data.invoice,
+      icon: FileText,
       color: "from-[#f8ecf8] to-[#f3def4]",
     },
     {
-      title: "Total Petugas Dapur",
-      value: data.dapur,
-      icon: UtensilsCrossed,
+      title: "Telah Dibayar",
+      value: data.dibayar,
+      icon: DollarSign,
       color: "from-[#e9f2fb] to-[#dceaf9]",
+    },
+    {
+      title: "Status Lunas",
+      value: data.lunas,
+      icon: BadgeCheck,
+      color: "from-[#fff3e5] to-[#ffe9cc]",
     },
   ];
 
@@ -104,15 +111,15 @@ export default function DashboardUser() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-semibold text-[#3b3b3b] mb-2">
-          Dashboard User
+          Dashboard Pembayaran
         </h1>
         <p className="text-sm text-[#7a7368]">
-          Lihat ringkasan jumlah konsumen dan seluruh petugas operasional Siqah.
+          Lihat ringkasan pengajuan, validasi, dan status pembayaran Aqiqah Siqah.
         </p>
       </div>
 
       {/* Statistik Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
         {cards.map((card) => {
           const Icon = card.icon;
           return (
@@ -138,10 +145,10 @@ export default function DashboardUser() {
 
       {/* Grafik dan Aktivitas */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Grafik Distribusi User */}
+        {/* Grafik Distribusi Pembayaran */}
         <div className="bg-white/80 backdrop-blur-md border border-[#eee6da] rounded-2xl p-6 shadow-sm">
           <h3 className="text-lg font-semibold text-[#3b3b3b] mb-4">
-            Distribusi Pengguna Siqah
+            Distribusi Status Pembayaran
           </h3>
           <ResponsiveContainer width="100%" height={280}>
             <PieChart>
@@ -167,10 +174,10 @@ export default function DashboardUser() {
           </ResponsiveContainer>
         </div>
 
-        {/* Aktivitas Terbaru Pengguna */}
+        {/* Aktivitas Terbaru Pembayaran */}
         <div className="bg-white/80 backdrop-blur-md border border-[#eee6da] rounded-2xl p-6 shadow-sm">
           <h3 className="text-lg font-semibold text-[#3b3b3b] mb-4">
-            Aktivitas Terbaru Pengguna
+            Aktivitas Terbaru Pembayaran
           </h3>
           <div className="overflow-y-auto max-h-72">
             <table className="w-full text-sm">
