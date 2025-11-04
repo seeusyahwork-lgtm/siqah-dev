@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import SuperadminLayout from "./layouts/SuperadminLayout";
 import AdminLayout from "./layouts/AdminLayout";
+import PetugasKandangLayout from "./layouts/PetugasKandangLayout";
 
 // admin Pages
 import DashboardAdmin from "./pages/admin/DashboardAdmin";
@@ -37,6 +38,17 @@ import DataPembayaran from "./pages/data-master/pembayaran/DataPembayaran";
 
 //laporan Master
 import DashboardLaporan from "./pages/data-master/DashboardLaporan";
+
+
+
+// Petugas Kandang Pages
+import DashboardPetugasKandang from "./pages/petugas/kandang/DashboardPetugasKandang";
+import DaftarTugasKandang from "./pages/petugas/kandang/DaftarTugasKandang";
+import DaftarHewanPetugasKandang from "./pages/petugas/kandang/DaftarHewanPetugasKandang";
+import DashboardLaporanPetugasKandang from "./pages/petugas/kandang/DashboardLaporanPetugasKandang";
+import LogNotifikasiPetugasKandang from "./pages/petugas/kandang/LogNotifikasiPetugasKandang";
+import PengaturanPetugasKandang from "./pages/petugas/kandang/PengaturanPetugasKandang";
+
 
 
 // Superadmin Pages
@@ -111,12 +123,19 @@ function App() {
           <Route path="laporan" element={<DashboardLaporan />} />
 
           <Route path="Notifikasiadmin" element={<LogNotifikasiAdmin />} />
-          <Route path="pengaturan" element={<PengaturanAdmin />} />
+          <Route path="pengaturan" element={<PengaturanAdmin />} />           
+        </Route>
 
-           
+        {/* 🔹 ROUTE UNTUK PETUGAS KANDANG (LAYOUT KHUSUS PETUGAS KANDANG) */}
+        <Route path="/petugas-kandang" element={<PetugasKandangLayout />}>
+          <Route index element={<DashboardPetugasKandang />} />
+          <Route path="tugas" element={<DaftarTugasKandang />} />
+          <Route path="hewan" element={<DaftarHewanPetugasKandang />} />
           
 
-        
+          <Route path="laporan" element={<DashboardLaporanPetugasKandang />} />
+          <Route path="notifikasi" element={<LogNotifikasiPetugasKandang />} />
+          <Route path="pengaturan" element={<PengaturanPetugasKandang />} />
         </Route>
 
       </Routes>
