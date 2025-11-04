@@ -1,4 +1,5 @@
-// client/src/pages/data-master/DashboardUser.jsx
+// client/src/pages/data-master/DashboardUsers
+// .jsx
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "../../components/ui/Card";
 import {
@@ -16,7 +17,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function DashboardUser() {
+export default function DashboardUsers
+() {
   // --- Data State ---
   const [data, setData] = useState({
     konsumen: 0,

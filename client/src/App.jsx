@@ -11,7 +11,8 @@ import DashboardAdmin from "./pages/admin/DashboardAdmin";
 import PesananAdmin from "./pages/admin/PesananAdmin";
 import DetailPesananAdmin from "./pages/admin/DetailPesananAdmin";
 import PembayaranAdmin from "./pages/admin/PembayaranAdmin";
-// import DataMasterAdmin from "./pages/admin/DataMasterAdmin";
+import LogNotifikasiAdmin from "./pages/admin/LogNotifikasiAdmin";
+import PengaturanAdmin from "./pages/admin/PengaturanAdmin";
 
 //Data Master entitas
 import Data from "./pages/data-master/DashboardData"; //import
@@ -22,7 +23,7 @@ import DataMenu from "./pages/data-master/dapur/DataMenu";
 import DataPaket from "./pages/data-master/dapur/DataPaket";
 
 //Data Master User
-import DataUser from "./pages/data-master/DashboardUser"; 
+import DataUser from "./pages/data-master/DashboardUsers"; 
 import DataPetugasKandang from "./pages/data-master/petugas/kandang/DataPetugasKandang";
 import DataPetugasDapur from "./pages/data-master/petugas/dapur/DataPetugasDapur";
 import DataPetugasKurir from "./pages/data-master/petugas/kurir/DataPetugasKurir";
@@ -33,6 +34,9 @@ import DataPembayaranDashboard from "./pages/data-master/DashboardPembayaran";
 import DataPengajuan from "./pages/data-master/pembayaran/DataPengajuan";
 import DataInvoice from "./pages/data-master/pembayaran/DataInvoice";
 import DataPembayaran from "./pages/data-master/pembayaran/DataPembayaran";
+
+//laporan Master
+import DashboardLaporan from "./pages/data-master/DashboardLaporan";
 
 
 // Superadmin Pages
@@ -104,7 +108,13 @@ function App() {
           <Route path="pembayaran/data" element={<DataPembayaran />} />
 
 
+          <Route path="laporan" element={<DashboardLaporan />} />
 
+          <Route path="Notifikasiadmin" element={<LogNotifikasiAdmin />} />
+          <Route path="pengaturan" element={<PengaturanAdmin />} />
+
+           
+          
 
         
         </Route>

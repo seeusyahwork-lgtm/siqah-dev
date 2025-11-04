@@ -53,7 +53,7 @@ const menuItems = [
     ],
   },
   { name: "Laporan", icon: BarChart3, path: "/admin/laporan" },
-  { name: "Notifikasi", icon: Bell, path: "/admin/notifikasi" },
+  { name: "Notifikasi", icon: Bell, path: "/admin/Notifikasiadmin" },
   { name: "Pengaturan", icon: Settings, path: "/admin/pengaturan" },
 ];
 
